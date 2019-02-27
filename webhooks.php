@@ -5,6 +5,8 @@ require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
 $access_token = 'j7iVbv/hCyo7SnTPRSbrjYnaRoCrdmgUOIjiO91utTjw3zXnmU+E/opAjIBW/hRoNwgLRE9Uw3w1BjU2NP8VXhjhtUohLxrJoWi2U26cCeQFnFhl1IJLPoC8TLo44wBwJdnVgK2NN//5JkvWisdnZgdB04t89/1O/w1cDnyilFU=';
 
+global $data[] = {};
+
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -14,21 +16,11 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// if user follow this line
-		$id = $event['source']['userId'];
+		if ($event['type'] == 'follow') {
+			$id = $event['source']['userId'];
+			array_push(array($id));
+		}
 
-		$inFile = file_get_contents('user.json');
-		$tempArray = json_decode($inFile);
-
-		$data = {
-			'id' => $id;
-		};
-		
-		array_push($tempArray, $data);
-		$jsonData = json_encode($tempArray);
-		file_put_contents('user.json', $jsonData);
-			
-
-		
 		}
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
