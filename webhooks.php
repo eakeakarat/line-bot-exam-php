@@ -6,6 +6,8 @@ require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
 $access_token = 'j7iVbv/hCyo7SnTPRSbrjYnaRoCrdmgUOIjiO91utTjw3zXnmU+E/opAjIBW/hRoNwgLRE9Uw3w1BjU2NP8VXhjhtUohLxrJoWi2U26cCeQFnFhl1IJLPoC8TLo44wBwJdnVgK2NN//5JkvWisdnZgdB04t89/1O/w1cDnyilFU=';
 
+$channelSecret = '6c82b4408e6a4b534ed470451eaed1ca';
+
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -20,10 +22,17 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			// $text = $event['source']['userId'];
 			// Get replyToken
-			
 			// Build message to reply back
 			if ($event['message']['text'] == 'hello' || $event['message']['text'] == 'สวัสดี'){
-				$text = $event['message']['text'] . "riri";
+				$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
+				$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+				$response = $bot->getProfile($event['source']['userId']);
+				if ($response->isSucceeded()) {
+				$profile = $response->getJSONDecodedBody();
+				$text = $event['message']['text'] . '&nbsp' . $profile['displayName'];
+
+			}else {
+				$text = $event['message']['text']
 			}
 
 			$replyToken = $event['replyToken'];
