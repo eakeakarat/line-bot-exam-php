@@ -24,13 +24,9 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			// Build message to reply back
 			if ($event['message']['text'] == 'hello' || $event['message']['text'] == 'สวัสดี'){
-				$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
-				$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
-				$response = $bot->getProfile($event['source']['userId']);
-				if ($response->isSucceeded()) {
-				$profile = $response->getJSONDecodedBody();
+				
 				$text = $event['message']['text'] . " " . $profile['displayName'];
-				}
+				
 			}else {
 				$text = $event['message']['text']
 			}
