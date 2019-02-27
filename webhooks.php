@@ -1,6 +1,8 @@
 <?php // callback.php
 
 require "vendor/autoload.php";
+
+
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
 $access_token = 'j7iVbv/hCyo7SnTPRSbrjYnaRoCrdmgUOIjiO91utTjw3zXnmU+E/opAjIBW/hRoNwgLRE9Uw3w1BjU2NP8VXhjhtUohLxrJoWi2U26cCeQFnFhl1IJLPoC8TLo44wBwJdnVgK2NN//5JkvWisdnZgdB04t89/1O/w1cDnyilFU=';
@@ -15,28 +17,19 @@ $events = json_decode($content, true);
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
-		// if user follow this line
-		if ($event['type'] == 'follow') {
-			$id = $event['source']['userId'];
-			
-		}
-
-		}
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			echo "wow";
-			
-			
 			// Get text sent
 			$text = $event['source']['userId'];
-			array_push($data,$text);
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
+			if ($event['message']['text'] == 'hello')
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => $data
+				'text' => 'Hello, how can i help you?'
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
