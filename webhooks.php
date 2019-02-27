@@ -5,7 +5,7 @@ require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
 $access_token = 'j7iVbv/hCyo7SnTPRSbrjYnaRoCrdmgUOIjiO91utTjw3zXnmU+E/opAjIBW/hRoNwgLRE9Uw3w1BjU2NP8VXhjhtUohLxrJoWi2U26cCeQFnFhl1IJLPoC8TLo44wBwJdnVgK2NN//5JkvWisdnZgdB04t89/1O/w1cDnyilFU=';
 
-global $data[] = {};
+$data[] = {};
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -18,7 +18,7 @@ if (!is_null($events['events'])) {
 		// if user follow this line
 		if ($event['type'] == 'follow') {
 			$id = $event['source']['userId'];
-			array_push($data,array($id));
+			array_push($data,$id);
 		}
 
 		}
@@ -33,7 +33,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => $$data
+				'text' => $data
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
