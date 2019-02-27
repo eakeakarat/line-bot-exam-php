@@ -18,15 +18,18 @@ if (!is_null($events['events'])) {
 		// if user follow this line
 		if ($event['type'] == 'follow') {
 			$id = $event['source']['userId'];
-			array_push($data,$id);
+			
 		}
 
 		}
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			echo "wow";
+			
+			
 			// Get text sent
 			$text = $event['source']['userId'];
+			array_push($data,$text);
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
