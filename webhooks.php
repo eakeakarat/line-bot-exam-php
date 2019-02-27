@@ -3,7 +3,7 @@
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
-$access_token = 'N87+JHzt7PsTrxy0FtyEjXOdcns1EqnUk6Lrw26AqMPV9WlvznnVIjmV8lM84EVvNwgLRE9Uw3w1BjU2NP8VXhjhtUohLxrJoWi2U26cCeTg/lBKBy0BYrrVb4WIvuXghpG2rfXFKpl2mhlH7tgixAdB04t89/1O/w1cDnyilFU=';
+$access_token = 'j7iVbv/hCyo7SnTPRSbrjYnaRoCrdmgUOIjiO91utTjw3zXnmU+E/opAjIBW/hRoNwgLRE9Uw3w1BjU2NP8VXhjhtUohLxrJoWi2U26cCeQFnFhl1IJLPoC8TLo44wBwJdnVgK2NN//5JkvWisdnZgdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -17,7 +17,8 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			echo "wow";
 			// Get text sent
-			$text = $event['source']['userId'];
+			$text = $event['source'];
+			// ['userId'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
