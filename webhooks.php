@@ -14,14 +14,20 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// if user follow this line
-		if ($event['type'] == 'follow') {
-			$id = $event['source']['userId'];
-			$data[] = $_POST[$id];
-			$inp = file_get_contents('user.json');
-			$tempArray = json_decode($inp);
-			array_push($tempArray, $data);
-			$jsonData = json_encode($tempArray);
-			file_put_contents('user.json', $jsonData);
+		$id = $event['source']['userId'];
+
+		$inFile = file_get_contents('user.json');
+		$tempArray = json_decode($inFile);
+
+		$data = {
+			'id' => $id;
+		};
+		
+		array_push($tempArray, $data);
+		$jsonData = json_encode($tempArray);
+		file_put_contents('user.json', $jsonData);
+			
+
 		
 		}
 		// Reply only when message sent is in 'text' format
