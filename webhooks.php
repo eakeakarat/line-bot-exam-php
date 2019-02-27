@@ -29,8 +29,8 @@ if (!is_null($events['events'])) {
 				$response = $bot->getProfile($event['source']['userId']);
 				if ($response->isSucceeded()) {
 				$profile = $response->getJSONDecodedBody();
-				$text = $event['message']['text'] . '&nbsp' . $profile['displayName'];
-
+				$text = $event['message']['text'] . " " . $profile['displayName'];
+				}
 			}else {
 				$text = $event['message']['text']
 			}
