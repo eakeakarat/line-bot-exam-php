@@ -23,13 +23,9 @@ if (!is_null($events['events'])) {
 			// $text = $event['source']['userId'];
 			// Get replyToken
 			// Build message to reply back
-			if ($event['message']['text'] == 'hello' || $event['message']['text'] == 'สวัสดี'){
-				
-				$text = $event['message']['text'] . " " . $profile['displayName'];
-				
-			}else {
-				$text = $event['message']['text']
-			}
+
+			$text = $event['message']['text'];
+			
 
 			$replyToken = $event['replyToken'];
 			$messages = [
