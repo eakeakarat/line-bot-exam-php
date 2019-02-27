@@ -20,16 +20,16 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			// $text = $event['source']['userId'];
 			// Get replyToken
-			$replyToken = $event['replyToken'];
+			
 			// Build message to reply back
-			if ($event['message']['text'] == 'hello'|| $event['message']['text'] == 'สวัสดี'){
-				$text = $event['message']['text'] . 
+			if ($event['message']['text'] == 'hello' || $event['message']['text'] == 'สวัสดี'){
+				$text = $event['message']['text'] . "riri";
 			}
 
-
+			$replyToken = $event['replyToken'];
 			$messages = [
 					'type' => 'text',
-					'text' => $event['message']['text']
+					'text' => $text
 				];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
