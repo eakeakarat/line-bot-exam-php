@@ -17,7 +17,7 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		if ($event['type'] == 'message' ){
+		if ($event['type'] == 'follow' ){
 			$text = $event['source']['userId'];
 			$fp = fopen('user.csv','a');
 			fwrite($fp,$text);
