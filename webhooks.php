@@ -34,7 +34,7 @@ if (!is_null($events['events'])) {
 			else if($chkId){
 				$input = $event['message']['text'];
 				$id = $event['source']['userId'];
-				$fp = fopen('user.csv','w');
+				$fp = fopen('user.csv','w+');
 				while(!feof($fp)) {
 					$i = fgets($fp);
 					if ($id == $i){
