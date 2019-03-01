@@ -24,15 +24,15 @@ if (!is_null($events['events'])) {
 			fclose($fp);
 		}
 		else if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-		echo 'Wow';
-
+			echo 'Wow';
 			if ($event['message']['text'] == 'hello'){
-				$text = 'sa wad dee kub';
+				$text = "sa wad dee kub";
 			}
 			else if (($event['message']['text'] == 'user'){
+				$text = "";
 				$fp = fopen('user.csv','r');
 				while(!feof($fp)) {
-					echo fgets($fp) . "<br>";
+					$text += fgets($fp) . "<br>";
 				}
 				fclose($fp);
 			}else {
