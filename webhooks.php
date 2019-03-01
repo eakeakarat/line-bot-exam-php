@@ -29,6 +29,7 @@ if (!is_null($events['events'])) {
 			if ($tmp == "hello"){
 				$text = "sa-wad-dee-kub";
 			}
+			
 			else if ($tmp == "user"){
 				$text = "";
 				$fp = fopen('user.csv','r');
