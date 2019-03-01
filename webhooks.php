@@ -25,23 +25,23 @@ if (!is_null($events['events'])) {
 		}
 		else if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			echo 'Wow';
-			if ($event['message']['text'] == 'hello'){
-				$text = "sa wad dee kub";
-			}
-			else if (($event['message']['text'] == 'user'){
-				$text = "";
-				$fp = fopen('user.csv','r');
-				while(!feof($fp)) {
-					$text += fgets($fp) . "<br>";
-				}
-				fclose($fp);
-			}else {
-				$text = $event['source']['userId'];
+			// if ($event['message']['text'] == 'hello'){
+			// 	$text = "sa wad dee kub";
+			// }
+			// else if (($event['message']['text'] == 'user'){
+			// 	$text = "";
+			// 	$fp = fopen('user.csv','r');
+			// 	while(!feof($fp)) {
+			// 		$text += fgets($fp) . "<br>";
+			// 	}
+			// 	fclose($fp);
+			// }else {
+				// $text = $event['source']['userId'];
 
-			}
+			// }
 
 			// Get text sent
-			// $text = $event['source']['userId'];
+			$text = $event['source']['userId'];
 			// Get replyToken
 			// Build message to reply back
 
