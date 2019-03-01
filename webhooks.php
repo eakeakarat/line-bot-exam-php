@@ -25,10 +25,11 @@ if (!is_null($events['events'])) {
 		}
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			echo 'wow';
-			if ($event['message']['text'] == "hello"){
+			$tmp = $event['message']['text'];
+			if ($tmp == "hello"){
 				$text = "sa-wad-dee-kub";
 			}
-			else if (($event['message']['text'] == 'user'){
+			else if ($tmp == "user"){
 				$text = "";
 				$fp = fopen('user.csv','r');
 				while(!feof($fp)) {
