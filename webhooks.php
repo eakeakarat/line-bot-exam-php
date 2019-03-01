@@ -13,27 +13,32 @@ $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
+$subject = "";
+$chkScore = false;
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		if ($event['type'] == 'follow' ){
+		if ($event['type'] == 'follow'){
 			$text = $event['source']['userId'] . "\n";
 			$fp = fopen('user.csv','a');
 			fwrite($fp,$text);
 			fclose($fp);
-		}
-		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+		}else if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			echo 'wow';
 			$tmp = strtolower($event['message']['text']);
-			
+			if ($chkScore){
+				
+			}
 
-			if (strpos($tmp,'hello') !== false || strpos($tmp,'สวัสดี') !== false){
+			else if (strpos($tmp,'hello') !== false || strpos($tmp,'ดี') !== false){
 				$text = "Hello!";
+				$chkScore = false;
 			}
 			else if (strpos($tmp,'คะแนน') !== false || strpos($tmp,'score') !== false){
 				//query scrore
-				$text = "คะแนนของผู้เรียน";
+				$text = "What subject do you want to see?";
+				$chkScore = true;
 			}else if ($tmp == "alluser"){
 				$text = "";
 				$fp = fopen('user.csv','r');
@@ -41,9 +46,10 @@ if (!is_null($events['events'])) {
 					$text .= fgets($fp);
 				}
 				fclose($fp);
+				$chkScore = false;
 			}else {
 				$text = "Sorry I don't understand";
-
+				$chkScore = false;
 			}
 
 			// Get text sent
