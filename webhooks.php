@@ -35,6 +35,9 @@ if (!is_null($events['events'])) {
 					echo fgets($fp) . "<br>";
 				}
 				fclose($fp);
+			}else {
+			$text = $event['source']['userId'];
+
 			}
 
 			// Get text sent
