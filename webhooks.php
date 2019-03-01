@@ -30,12 +30,12 @@ if (!is_null($events['events'])) {
 				$id = $event['source']['userId'];
 				$input = $event['message']['text'];
 				$inputs = explode(' ',$input);
-				$text = $inputs[strlen($inputs)-1];
+				// $text = $inputs[strlen($inputs)-1];
 				$fp = fopen('user.csv','w+');
 				while(!feof($fp)) {
 					$i = fgets($fp);
 					if ($id == $i){
-						fputcsv($fp,$text);
+						fputcsv($fp,$inputs[1]);
 						$text = "success";
 					}
 				}
