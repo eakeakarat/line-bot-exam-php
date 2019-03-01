@@ -33,7 +33,7 @@ if (!is_null($events['events'])) {
 				$text = "";
 				$fp = fopen('user.csv','r');
 				while(!feof($fp)) {
-					$text += fgets($fp) . "<br>";
+					$text .= fgets($fp) . "<br>";
 				}
 				fclose($fp);
 			}else {
