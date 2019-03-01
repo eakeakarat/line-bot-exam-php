@@ -15,6 +15,7 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 $subject = "";
 $chkScore = false;
+$setId = false;
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
@@ -29,6 +30,25 @@ if (!is_null($events['events'])) {
 			$tmp = strtolower($event['message']['text']);
 			if ($chkScore){
 				
+			}
+			else if($chkId){
+				$input = $event['message']['text'];
+				$id = $event['source']['userId'];
+				$fp = fopen('user.csv','w');
+				while(!feof($fp)) {
+					$i = fgets($fp);
+					if ($id == $i){
+						fputcsv($fp,$i.$input);
+						break;
+					}
+				}
+				fclose($fp);
+			}
+
+			else if (strpos($tmp,'setup') !== false || strpos($tmp,'ตั้งค่า') !== false){
+				$text = "input you ID";
+				$setId = true;
+				$chkScore = false;
 			}
 
 			else if (strpos($tmp,'hello') !== false || strpos($tmp,'ดี') !== false){
