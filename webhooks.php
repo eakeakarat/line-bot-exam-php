@@ -20,7 +20,7 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'follow' ){
 			$text = $event['source']['userId'];
 			$fp = fopen('user.csv','a');
-			fwrite($fp,$text);
+			fwrite($fp,$text."\n");
 			fclose($fp);
 		}
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
