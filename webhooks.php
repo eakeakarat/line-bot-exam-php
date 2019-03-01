@@ -23,8 +23,8 @@ if (!is_null($events['events'])) {
 			fwrite($fp,$text);
 			fclose($fp);
 		}
-		else if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-			echo 'Wow';
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+			echo 'wow';
 			// if ($event['message']['text'] == 'hello'){
 			// 	$text = "sa wad dee kub";
 			// }
