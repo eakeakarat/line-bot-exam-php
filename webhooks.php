@@ -17,16 +17,33 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-			echo "wow";
+		if ($event['type'] == 'message' ){
+			$text = $event['source']['userId'];
+			$fp = fopen('user.csv','a');
+			fwrite($fp,$text);
+			fclose($fp);
+		}
+
+
+		else if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+			if ($event['message']['text'] == 'hello'){
+				$text = 'sa wad dee kub';
+			}
+			else if (($event['message']['text'] == 'user'){
+				$fp = fopen('user.csv','r');
+				while(!feof($fp)) {
+					echo fgets($fp) . "<br>";
+				}
+				fclose($fp);
+			}
+
 			// Get text sent
 			// $text = $event['source']['userId'];
 			// Get replyToken
 			// Build message to reply back
 
-			$text = $event['message']['text'];
+			// $text = $event['message']['text'];
 			
-
 			$replyToken = $event['replyToken'];
 			$messages = [
 					'type' => 'text',
