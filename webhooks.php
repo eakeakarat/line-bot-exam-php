@@ -25,8 +25,8 @@ if (!is_null($events['events'])) {
 		}
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			echo 'wow';
-			if ($event['message']['text'] == 'hello'){
-				$text = "sa wad dee kub";
+			if ($event['message']['text'] == "hello"){
+				$text = "sa-wad-dee-kub";
 			}
 			else if (($event['message']['text'] == 'user'){
 				$text = "";
