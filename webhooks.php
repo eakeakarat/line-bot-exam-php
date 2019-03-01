@@ -25,14 +25,16 @@ if (!is_null($events['events'])) {
 		}
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			echo 'wow';
-			$tmp = $event['message']['text'];
+			$tmp = strtolower($event['message']['text']);
+			
+
 			if (strpos($tmp,'hello') !== false || strpos($tmp,'สวัสดี') !== false){
 				$text = "Hello!";
 			}
 			else if (strpos($tmp,'คะแนน') !== false || strpos($tmp,'score') !== false){
 				//query scrore
 				$text = "คะแนนของผู้เรียน";
-			}else if ($tmp == "\alluser"){
+			}else if ($tmp == "alluser"){
 				$text = "";
 				$fp = fopen('user.csv','r');
 				while(!feof($fp)) {
