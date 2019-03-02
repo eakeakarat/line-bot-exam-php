@@ -49,7 +49,6 @@ if (!is_null($events['events'])) {
                                 $keep .= $id . "," . $b;
                             }
                         }
-                        $text .= $keep;
                         fclose($fp);
 
                         $fp = fopen('user.csv', 'w');
